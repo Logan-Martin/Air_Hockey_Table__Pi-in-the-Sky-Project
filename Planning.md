@@ -7,6 +7,8 @@
 * [What Can Go Wrong?](#What_Can_Go_Wrong?)
 ## Design
 
+Inspiration:
+
 ![image](https://user-images.githubusercontent.com/71342159/205669947-7beeb2ce-b330-4331-a39b-51d8935d369e.png)
 
 ## Code
