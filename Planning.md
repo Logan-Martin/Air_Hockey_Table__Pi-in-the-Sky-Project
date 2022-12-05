@@ -5,6 +5,10 @@
 * [Code](#Code)
 * [Bill of Materials](#Bill_Of_Materials)
 * [What Can Go Wrong?](#What_Can_Go_Wrong?)
+
+## Goal
+Make a small air hockey table that functions. _(more specific info below)_
+
 ## Design
 
 Inspiration:
@@ -13,20 +17,23 @@ Inspiration:
 
 ## Code
 
+
 ## Bill_Of_Materials
 
 #### Materials:
-- Wood (for sides)
+- Wood _(for sides)_
 - Acrylic
-- 3D print filament (preferably black for most things)
+- 3D print filament _(preferably black for most things)_
 
 #### Specific Components:
 - Computer Fans
 - Rasberry Pi
-- LCD or screen in general to keep score (and possibly show more info, maybe a user interface?)
+- LCD or screen in general to keep score _(and possibly show more info, maybe a user interface?)_
 - Buttons (reset score button)
 - Switch (on/off)
-- Distance resistor or photo resistor (know when someone scores)
+- Distance resistor or photo resistor _(know when someone scores)_
+- screws, nuts
+- batteries + battery pack
 
 ##### (EXTRA) If we have extra time:
 - Something for playing sound effects
@@ -34,15 +41,16 @@ Inspiration:
 - PA Buzzer (for sound)
 - LED to indicate if the air hockey table is on
 
-#### Software & Machinery:
+#### Software, Machinery, & Tools:
 - OnShape (or another CAD software)
 - 3D Printer
 - Laser cutter
+- Screwdriver _(drill maybe or something similar if we need it)_
 
 
 ## What_do_we_need_to_know_for_this_project?
 - Air mechanics, equations, and anything related to that and making something float.
-- Keeping track of people scoring. (How might we go about that?)
+- Keeping track of people scoring. _(How might we go about that?)_
 
 
 ## How_will_the_final_product_function?
