@@ -70,7 +70,7 @@ Success is the functionality above working, and, not breaking.
 
 --
 
-##Schedule:
+## Schedule:
 
 #### December:
 1. Project proposal
