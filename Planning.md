@@ -4,6 +4,8 @@
 * [Design](#Design)
 * [Code](#Code)
 * [Bill of Materials](#Bill_Of_Materials)
+* [What knowledge must we possess?](#What_Do_We_Need_To_Know_For_This_Project?)
+* [what will it do?](How_Will_The_Final_Product_Function?)
 * [What Can Go Wrong?](#What_Can_Go_Wrong?)
 
 ## Goal
@@ -48,12 +50,12 @@ Inspiration:
 - Screwdriver _(drill maybe or something similar if we need it)_
 
 
-## What_do_we_need_to_know_for_this_project?
+## What_Do_We_Need_To_Know_For_This_Project?
 - Air mechanics, equations, and anything related to that and making something float.
 - Keeping track of people scoring. _(How might we go about that?)_
 
 
-## How_will_the_final_product_function?
+## How_Will_The_Final_Product_Function?
 Someone will cut on the air hockey table and be able to play a full game (two people), or if they choose to, reset the score with the push of a button. _(this feature relies on trust, someone could be a bad-sport and reset the score. However, not having this feature is dumb as people would have to cut the machine off and on again to reset the score.)_ The score will be tracked from an LCD or a similar display/screen. 
 
 Success is the functionality above working, and, not breaking.
