@@ -68,5 +68,40 @@ Success is the functionality above working, and, not breaking.
 - the puck not float
 - a goal not getting registered
 
+--
 
+##Schedule:
+
+#### December:
+1. Project proposal
+2. Basic code system for Air Hockey Table and get it working, slightly
+3. Basic CAD work, makiing air hockey table, prototyping hole sizes.
+
+If we got more time:
+4. Work on a protoype and get it somewhat functional
+
+#### January: Initial CAD + Code
+1. more refined code system for Air Hockey Table and get it working.
+2. more refined CAD work, makiing air hockey table, getting closer to final product.
+
+If we got more time:
+4. Work on a protoype and get it somewhat or mostly functional
+
+#### February: Functional Prototype Creation
+if we haven't done it already, wrk on a protoype and get it mostly/entirely functional.
+
+If we have time:
+- Begin/continue process for making final design
+
+#### March: Design Refinement + Final Tweaks
+- Begin/continue process for making final design
+
+#### April: Launches + Data collection
+- continue/end process for making final air hockey table
+
+#### May: Analize Data + Finalize Documentation
+If we haven't yet, finish the final version of the air hockey table.
+
+#### June: Emergency Project Work + Drones
+If we haven't yet, finish the final version of the air hockey table.
 
