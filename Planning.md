@@ -42,6 +42,7 @@ Inspiration:
 - GPS (track puck movement)
 - PA Buzzer (for sound)
 - LED to indicate if the air hockey table is on
+- -Field Hazards
 
 #### Software, Machinery, & Tools:
 - OnShape (or another CAD software)
