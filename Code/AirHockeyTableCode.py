@@ -2,9 +2,20 @@ import board # type: ignore
 import digitalio  # type: ignore
 import time
 
+onOffSwitch = digitalio.DigitalInOut(board.GP17) # switch for turning on/off the air hockey table
+onOffSwitch.direction = digitalio.Direction.INPUT
+onOffSwitch.pull = digitalio.Pull.DOWN
+
 resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
 resetButton.pull = digitalio.Pull.DOWN
+
+fan1 = digitalio.DigitalInOut(board.GP1)
+fan2 = digitalio.DigitalInOut(board.GP2)
+fan3 = digitalio.DigitalInOut(board.GP3)
+fan4 = digitalio.DigitalInOut(board.GP4)
+fan5 = digitalio.DigitalInOut(board.GP5)
+fan6 = digitalio.DigitalInOut(board.GP6)
 
 scoreNeededToWinGame = 7
 
