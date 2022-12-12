@@ -28,7 +28,7 @@ Inspiration:
 - 3D print filament _(preferably black for most things)_
 
 #### Specific Components:
-- Computer Fans
+- [Computer Fans]([url](https://www.digikey.com/en/products/detail/nmb-technologies-corporation/4710KL-05W-B10-E00/776516)) 
 - Rasberry Pi
 - LCD or screen in general to keep score _(and possibly show more info, maybe a user interface?)_
 - Buttons (reset score button)
