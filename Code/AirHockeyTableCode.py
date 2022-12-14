@@ -2,9 +2,11 @@ import board # type: ignore
 import digitalio  # type: ignore
 import time
 
-resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
+resetButton = digitalio.DigitalInOut(board.GP19) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
 resetButton.pull = digitalio.Pull.DOWN
+
+led1 = digitalio.DigitalInOut(board.GP18)
 
 scoreNeededToWinGame = 7
 
