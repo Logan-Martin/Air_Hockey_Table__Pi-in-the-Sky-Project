@@ -30,8 +30,6 @@ def resetScoreFunction():
     player1Score = 0
     player2Score = 0
 
-
-
 while True:
     time.sleep(0.01)
     led1.Value = True
