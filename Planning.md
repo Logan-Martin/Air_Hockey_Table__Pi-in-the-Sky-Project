@@ -28,7 +28,7 @@ Inspiration:
 - 3D print filament _(preferably black for most things)_
 
 #### Specific Components:
-- Computer Fans
+- [Computer Fans]([url](https://www.digikey.com/en/products/detail/nmb-technologies-corporation/4710KL-05W-B10-E00/776516)) 
 - Rasberry Pi
 - LCD or screen in general to keep score _(and possibly show more info, maybe a user interface?)_
 - Buttons (reset score button)
@@ -42,6 +42,7 @@ Inspiration:
 - GPS (track puck movement)
 - PA Buzzer (for sound)
 - LED to indicate if the air hockey table is on
+- Field Hazards
 
 #### Software, Machinery, & Tools:
 - OnShape (or another CAD software)
@@ -67,5 +68,46 @@ Success is the functionality above working, and, not breaking.
 - the puck not float
 - a goal not getting registered
 
+--
 
+## Code:
+![image](https://user-images.githubusercontent.com/71342159/206221752-47cdee8d-2fd2-4427-9197-230ee88c067d.png)
+
+### https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Code/AirHockeyTableCode.py
+
+
+## Schedule:
+
+#### December:
+1. Project proposal
+2. Basic code system for Air Hockey Table and get it working, slightly
+3. Basic CAD work, makiing air hockey table, prototyping hole sizes.
+
+If we got more time:
+4. Work on a protoype and get it somewhat functional
+
+#### January: Initial CAD + Code
+1. more refined code system for Air Hockey Table and get it working.
+2. more refined CAD work, makiing air hockey table, getting closer to final product.
+
+If we got more time:
+4. Work on a protoype and get it somewhat or mostly functional
+
+#### February: Functional Prototype Creation
+if we haven't done it already, wrk on a protoype and get it mostly/entirely functional.
+
+If we have time:
+- Begin/continue process for making final design
+
+#### March: Design Refinement + Final Tweaks
+- Begin/continue process for making final design
+
+#### April: Launches + Data collection
+- continue/end process for making final air hockey table
+
+#### May: Analize Data + Finalize Documentation
+If we haven't yet, finish the final version of the air hockey table.
+
+#### June: Emergency Project Work + Drones
+If we haven't yet, finish the final version of the air hockey table.
 
