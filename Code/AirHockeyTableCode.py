@@ -6,9 +6,11 @@ onOffSwitch = digitalio.DigitalInOut(board.GP17) # switch for turning on/off the
 onOffSwitch.direction = digitalio.Direction.INPUT
 onOffSwitch.pull = digitalio.Pull.DOWN
 
-resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
+resetButton = digitalio.DigitalInOut(board.GP16) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
 resetButton.pull = digitalio.Pull.DOWN
+
+led1 = digitalio.DigitalInOut(board.GP18) # Button stuff
 
 fan1 = digitalio.DigitalInOut(board.GP1)
 fan2 = digitalio.DigitalInOut(board.GP2)
@@ -43,6 +45,7 @@ def resetScoreFunction():
 
 while True:
     time.sleep(0.01)
+    led1.Value = True
     if resetButton.value == True and player1.score + player2.score != 0 : # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetScoreFunction()
 
