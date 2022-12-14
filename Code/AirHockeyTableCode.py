@@ -32,9 +32,9 @@ def resetScoreFunction():
 
 while True:
     time.sleep(0.01)
-    print("Hey.")
-   ## if resetButton.value == True and player1.score + player2.score != 0 : # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
-    ##   resetScoreFunction()
+    led1.Value = True
+    if resetButton.value == True and player1.score + player2.score != 0 : # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
+       resetScoreFunction()
 
 
      
