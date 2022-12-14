@@ -52,12 +52,14 @@ while True:
 
     if player1Button.value == True and scoreingDebounce == False:
         scoreingDebounce = True
+        print("Player1 scored!")
         playerScoredFunction(player1)
         time.sleep(0.05)
         scoreingDebounce = False
 
     if player2Button.value == True and scoreingDebounce == False:
         scoreingDebounce = True
+        print("Player2 scored!")
         playerScoredFunction(player2)
         time.sleep(0.05)
         scoreingDebounce = False
