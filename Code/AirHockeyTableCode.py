@@ -16,7 +16,7 @@ scoringDebounceForPlayer1 = False
 scoringDebounceForPlayer2 = False
 
 player1 = {
-    "score": 1
+    "score": 0
 }
 player2 = {
     "score": 0
@@ -38,7 +38,7 @@ def playerScoredFunction(whoScored):
     if whoScored["score"] + 1 != scoreNeededToWinGame:
         whoScored["score"] = whoScored["score"] + 1
     else:
-        print("Winning point scored.")
+        whoScored["score"] = whoScored["score"] + 1
         playerWonFunction(whoScored)
 
 
