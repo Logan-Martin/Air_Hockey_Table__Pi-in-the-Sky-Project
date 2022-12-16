@@ -11,15 +11,22 @@ led1 = digitalio.DigitalInOut(board.GP19)
 led1.direction = digitalio.Direction.OUTPUT
 
 scoreNeededToWinGame = 7
-
+someoneWonTheGame = False
 scoringDebounceForPlayer1 = False
 scoringDebounceForPlayer2 = False
 
+debounceForWinning = 0
+## 0 = False, 1 == True
+
 player1 = {
-    "score": 0
+    "name" : "player2", ## maybe let people enter their own names?
+    "score": 0,
+    "winCount" : 0
 }
 player2 = {
-    "score": 0
+    "name" : "player2",
+    "score": 0,
+    "winCount" : 0
 }
 
 player1Button = digitalio.DigitalInOut(board.GP2) # Button stuff
@@ -30,44 +37,52 @@ player2Button = digitalio.DigitalInOut(board.GP3) # Button stuff
 player2Button.direction = digitalio.Direction.INPUT
 player2Button.pull = digitalio.Pull.DOWN
 
-def playerWonFunction(whoWon):
-    print(str(whoWon) + " won the game!")
+def playerWonFunction(whoScored):
+    print(str(whoScored["name"]) + " won the game!")
+    whoScored["winCount"] = whoScored["winCount"] + 1
 
-
-def playerScoredFunction(whoScored):
+def playerScoredFunction(whoScored,debounceForWinning):
     if whoScored["score"] + 1 != scoreNeededToWinGame:
         whoScored["score"] = whoScored["score"] + 1
+
     else:
-        whoScored["score"] = whoScored["score"] + 1
-        playerWonFunction(whoScored)
+        if debounceForWinning == 0: ## 0 = False, nobody won yet
+            debounceForWinning = 1 ## 0 = True, someone won
+            whoScored["score"] = whoScored["score"] + 1
+            playerWonFunction(whoScored)
 
-
-def resetScoreFunction():
-    print("Resetting Score.")
+def resetScoreFunction(debounceForWinning):
+    print("Score Reset.")
     player1["score"] = 0
     player2["score"] = 0
+    debounceForWinning = 0
+
+def setScoreToWinFunction():
+    ## scoreNeededToWinGame = scoreNeededToWinGame - 1
+    ## scoreNeededToWinGame = scoreNeededToWinGame + 1
+    print("Haha")
 
 while True:
     time.sleep(0.01)
     led1.value = True
     if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetButtonWasPressed = True
-       resetScoreFunction()
+       resetScoreFunction(debounceForWinning)
     if resetButton.value == False and resetButtonWasPressed == True:
        resetButtonWasPressed = False
 
-    if player1Button.value == True and scoringDebounceForPlayer1 == False:
+    if player1Button.value == True and scoringDebounceForPlayer1 == False and someoneWonTheGame == False:
         scoringDebounceForPlayer1 = True
         print("Player1 scored!")
-        playerScoredFunction(player1)
+        playerScoredFunction(player1,debounceForWinning)
         print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
     if player1Button.value == False and scoringDebounceForPlayer1 == True:
         scoringDebounceForPlayer1 = False
 
-    if player2Button.value == True and scoringDebounceForPlayer2 == False:
+    if player2Button.value == True and scoringDebounceForPlayer2 == False and someoneWonTheGame == False:
         scoringDebounceForPlayer2 = True
         print("Player2 scored!")
-        playerScoredFunction(player2)
+        playerScoredFunction(player2,debounceForWinning)
         print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
     if player2Button.value == False and scoringDebounceForPlayer2 == True:
         scoringDebounceForPlayer2 = False
