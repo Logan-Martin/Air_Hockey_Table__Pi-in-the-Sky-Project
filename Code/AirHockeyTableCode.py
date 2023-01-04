@@ -21,12 +21,14 @@ debounceForWinning = 0
 player1 = {
     "name" : "player2", ## maybe let people enter their own names?
     "score": 0,
-    "winCount" : 0
+    "winCount" : 0,
+    "playerScoredWhatTheyNeedToWin" : False
 }
 player2 = {
     "name" : "player2",
     "score": 0,
-    "winCount" : 0
+    "winCount" : 0,
+    "playerScoredWhatTheyNeedToWin" : False
 }
 
 player1Button = digitalio.DigitalInOut(board.GP2) # Button stuff
@@ -70,23 +72,20 @@ while True:
        resetButtonWasPressed = True
        resetScoreFunction(debounceForWinning)
     if resetButton.value == False and resetButtonWasPressed == True:
-       time.sleep(1)
        resetButtonWasPressed = False
 
-    if player1Button.value == True and scoringDebounceForPlayer1 == False and debounceForWinning == 0:
+    if player1Button.value == True and scoringDebounceForPlayer1 == False and player1["score"] <= (scoreNeededToWinGame - 1):
         scoringDebounceForPlayer1 = True
         print("Player1 scored!")
         playerScoredFunction(player1,debounceForWinning)
         print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
     if player1Button.value == False and scoringDebounceForPlayer1 == True:
-        time.sleep(1)
         scoringDebounceForPlayer1 = False
 
-    if player2Button.value == True and scoringDebounceForPlayer2 == False and debounceForWinning == 0:
+    if player2Button.value == True and scoringDebounceForPlayer2 == False and player2["score"] <= (scoreNeededToWinGame - 1):
         scoringDebounceForPlayer2 = True
         print("Player2 scored!")
         playerScoredFunction(player2,debounceForWinning)
         print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
     if player2Button.value == False and scoringDebounceForPlayer2 == True:
-        time.sleep(1)
         scoringDebounceForPlayer2 = False
