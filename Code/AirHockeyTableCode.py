@@ -59,6 +59,7 @@ def resetScoreFunction():
 def setScoreToWinFunction():
     ## scoreNeededToWinGame = scoreNeededToWinGame - 1
     ## scoreNeededToWinGame = scoreNeededToWinGame + 1
+    ## scoreNeededToWinGame = 999999 ## This is the inf setting
     print("Haha no.")
 
 while True:
