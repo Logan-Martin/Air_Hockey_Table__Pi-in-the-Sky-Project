@@ -80,7 +80,7 @@ while True:
     if player1Button.value == False and scoringDebounceForPlayer1 == True:
         scoringDebounceForPlayer1 = False
 
-    if player2Button.value == True and scoringDebounceForPlayer2 == False and player2["playerScoredWhatTheyNeedToWin"] == False:
+    if player2Button.value == True and scoringDebounceForPlayer2 == False and player2["playerWonThisRound"] == False:
         scoringDebounceForPlayer2 = True
         print("Player2 scored!")
         playerScoredFunction(player2)
