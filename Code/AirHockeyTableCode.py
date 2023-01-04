@@ -19,7 +19,7 @@ debounceForWinning = 0
 ## 0 = False, 1 == True
 
 player1 = {
-    "name" : "player2", ## maybe let people enter their own names?
+    "name" : "player1", ## maybe let people enter their own names?
     "score": 0,
     "winCount" : 0,
     "playerScoredWhatTheyNeedToWin" : False
