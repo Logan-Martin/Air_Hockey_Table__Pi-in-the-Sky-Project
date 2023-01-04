@@ -46,19 +46,17 @@ def playerWonFunction(whoScored):
 def playerScoredFunction(whoScored,debounceForWinning):
     if whoScored["score"] + 1 != scoreNeededToWinGame:
         whoScored["score"] = whoScored["score"] + 1
-
     else:
-        if debounceForWinning == 0: ## 0 = False, nobody won yet
-            debounceForWinning = 1 ## 0 = True, someone won
+        if player1["playerScoredWhatTheyNeedToWin"] == False and player2["playerScoredWhatTheyNeedToWin"] == False: ## nobody won yet
+            whoScored["playerScoredWhatTheyNeedToWin"] = True
             whoScored["score"] = whoScored["score"] + 1
             playerWonFunction(whoScored)
             
 
-def resetScoreFunction(debounceForWinning):
+def resetScoreFunction():
     print("Score Reset.")
     player1["score"] = 0
     player2["score"] = 0
-    debounceForWinning = 0
 
 def setScoreToWinFunction():
     ## scoreNeededToWinGame = scoreNeededToWinGame - 1
@@ -70,11 +68,12 @@ while True:
     led1.value = True
     if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetButtonWasPressed = True
-       resetScoreFunction(debounceForWinning)
+       player1["playerScoredWhatTheyNeedToWin"] = False
+       resetScoreFunction()
     if resetButton.value == False and resetButtonWasPressed == True:
        resetButtonWasPressed = False
 
-    if player1Button.value == True and scoringDebounceForPlayer1 == False and player1["score"] <= (scoreNeededToWinGame - 1):
+    if player1Button.value == True and scoringDebounceForPlayer1 == False and player1["playerScoredWhatTheyNeedToWin"] == False:
         scoringDebounceForPlayer1 = True
         print("Player1 scored!")
         playerScoredFunction(player1,debounceForWinning)
@@ -82,7 +81,7 @@ while True:
     if player1Button.value == False and scoringDebounceForPlayer1 == True:
         scoringDebounceForPlayer1 = False
 
-    if player2Button.value == True and scoringDebounceForPlayer2 == False and player2["score"] <= (scoreNeededToWinGame - 1):
+    if player2Button.value == True and scoringDebounceForPlayer2 == False and player2["playerScoredWhatTheyNeedToWin"] == False:
         scoringDebounceForPlayer2 = True
         print("Player2 scored!")
         playerScoredFunction(player2,debounceForWinning)
