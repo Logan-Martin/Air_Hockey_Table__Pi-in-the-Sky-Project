@@ -60,6 +60,9 @@ def setScoreToWinFunction():
     ## scoreNeededToWinGame = scoreNeededToWinGame - 1
     ## scoreNeededToWinGame = scoreNeededToWinGame + 1
     ## scoreNeededToWinGame = 999999 ## This is the inf setting
+
+    ## print("Score needed to win: " + str(scoreNeededToWinGame))
+    ## print("Score needed to win: inf (999999)")
     print("Haha no.")
 
 while True:
