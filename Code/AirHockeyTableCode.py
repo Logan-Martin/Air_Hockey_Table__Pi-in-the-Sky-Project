@@ -42,14 +42,13 @@ def playerWonFunction(whoScored):
 
 def playerScoredFunction(whoScored):
     if player1["playerWonThisRound"] == False and player2["playerWonThisRound"] == False: ## if nobody won yet
-
         if whoScored["score"] + 1 != scoreNeededToWinGame:
             whoScored["score"] = whoScored["score"] + 1
         else:
             whoScored["playerWonThisRound"] = True
             whoScored["score"] = whoScored["score"] + 1
             playerWonFunction(whoScored)
-    if player1["playerWonThisRound"] == True or player2["playerWonThisRound"] == True:
+    else:
         print("Reset score to play again.")
             
 def resetScoreFunction():
