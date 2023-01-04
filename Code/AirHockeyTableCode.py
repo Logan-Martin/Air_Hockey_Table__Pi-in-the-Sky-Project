@@ -49,8 +49,8 @@ def playerScoredFunction(whoScored):
             whoScored["playerWonThisRound"] = True
             whoScored["score"] = whoScored["score"] + 1
             playerWonFunction(whoScored)
-    else:
-        print("Someone has already won. Reset score to play again.")
+    if player1["playerWonThisRound"] == True or player2["playerWonThisRound"] == True:
+        print("Reset score to play again.")
             
 def resetScoreFunction():
     print("Score Reset.")
