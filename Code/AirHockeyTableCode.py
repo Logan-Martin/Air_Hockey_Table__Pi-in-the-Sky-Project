@@ -4,7 +4,7 @@ import displayio # type: ignore
 import time 
 import busio  # type: ignore
 ## import adafruit_character_lcd.character_lcd_i2c as character_lcd # type: ignore
-import Adafruit_CircuitPython_CharLCDFile.adafruit_character_lcd.character_lcd_i2c as character_lcd # type: ignore
+import Adafruit_CircuitPython_CharLCD.adafruit_character_lcd.character_lcd_i2c as character_lcd # type: ignore
 
 i2c = busio.I2C(board.GP0, board.GP1)
 lcd = character_lcd.Character_LCD_I2C(i2c, 16, 2)
