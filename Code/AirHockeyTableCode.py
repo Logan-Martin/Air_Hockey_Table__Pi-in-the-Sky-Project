@@ -1,6 +1,13 @@
 import board # type: ignore
 import digitalio  # type: ignore
-import time
+import displayio # type: ignore
+import time 
+import busio  # type: ignore
+## import adafruit_character_lcd.character_lcd_i2c as character_lcd # type: ignore
+import Adafruit_CircuitPython_CharLCDFile.adafruit_character_lcd.character_lcd_i2c as character_lcd # type: ignore
+
+i2c = busio.I2C(board.GP0, board.GP1)
+lcd = character_lcd.Character_LCD_I2C(i2c, 16, 2)
 
 resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
@@ -68,6 +75,7 @@ def setScoreToWinFunction():
 while True:
     time.sleep(0.01)
     led1.value = True
+    lcd.message = "Hello!"
     if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetButtonWasPressed = True
        player1["playerWonThisRound"] = False
