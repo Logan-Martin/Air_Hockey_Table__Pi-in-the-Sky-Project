@@ -3,11 +3,18 @@ import digitalio  # type: ignore
 import displayio # type: ignore
 import time 
 import busio  # type: ignore
-## import adafruit_character_lcd.character_lcd_i2c as character_lcd # type: ignore
 import Adafruit_CircuitPython_CharLCD.adafruit_character_lcd.character_lcd_i2c as character_lcd # type: ignore
+## SDA, SCL
+i2c = busio.I2C(board.GP1, board.GP0)
+## lcd = character_lcd.Character_LCD_I2C(i2c, 16, 2)
+busio.I2C.try_lock() ## need to lock and unlock, scan device adress, and yeah. https://learn.adafruit.com/circuitpython-basics-i2c-and-spi/i2c-devices
 
-i2c = busio.I2C(board.GP0, board.GP1)
-lcd = character_lcd.Character_LCD_I2C(i2c, 16, 2)
+try:
+   busio.I2C.unlock()
+except TypeError:
+    print("OK! What even is this?")
+finally:
+    i2c.scan()
 
 resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
@@ -75,7 +82,7 @@ def setScoreToWinFunction():
 while True:
     time.sleep(0.01)
     led1.value = True
-    lcd.message = "Hello!"
+    ## lcd.message = "Hello!"
     if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetButtonWasPressed = True
        player1["playerWonThisRound"] = False
