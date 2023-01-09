@@ -7,7 +7,7 @@ import Adafruit_CircuitPython_CharLCD.adafruit_character_lcd.character_lcd_i2c a
 ## SDA, SCL
 i2c = busio.I2C(board.GP1, board.GP0)
 ## lcd = character_lcd.Character_LCD_I2C(i2c, 16, 2)
-busio.I2C.try_lock() ## need to lock and unlock, scan device adress, and yeah. https://learn.adafruit.com/circuitpython-basics-i2c-and-spi/i2c-devices
+## https://learn.adafruit.com/circuitpython-basics-i2c-and-spi/i2c-devices | USE ONE LCD! :)
 
 try:
    busio.I2C.unlock()
