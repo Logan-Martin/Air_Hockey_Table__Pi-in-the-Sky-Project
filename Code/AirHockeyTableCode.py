@@ -7,18 +7,17 @@ import busio  # type: ignore
 from CircuitPython_LCDFolder.lcd.lcd import LCD, CursorMode  # type: ignore
 from CircuitPython_LCDFolder.lcd.i2c_pcf8574_interface import I2CPCF8574Interface  # type: ignore
 # http://www.penguintutor.com/electronics/pico-lcd
+# Make sure to have at least 5v. Pico only gives 3 volts. use battery back.
 # address = 0x3f
 i2c_scl = board.GP1
 i2c_sda = board.GP0
 i2c_address = 0x3f
 cols = 16
 rows = 2
-
 i2c = busio.I2C(scl=i2c_scl, sda=i2c_sda)
 interface = I2CPCF8574Interface(i2c, i2c_address)
 lcd = LCD(interface, num_rows=rows, num_cols=cols)
 # lcd.set_cursor_mode(CursorMode.HIDE)
-
 
 resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
@@ -57,11 +56,15 @@ player2Button.pull = digitalio.Pull.DOWN
 def playerWonFunction(whoScored):
     print(str(whoScored["name"]) + " won the game!")
     whoScored["winCount"] = whoScored["winCount"] + 1
+    lcd.clear()
+    lcd.print(str(whoScored["name"]) + " won the game!")
 
 def playerScoredFunction(whoScored):
     if player1["playerWonThisRound"] == False and player2["playerWonThisRound"] == False: ## if nobody won yet
         if whoScored["score"] + 1 != scoreNeededToWinGame:
             whoScored["score"] = whoScored["score"] + 1
+            lcd.clear()
+            lcd.print("Player1: " + str(player1["score"]) + "      " + "Player2: " + str(player2["score"]))
         else:
             whoScored["playerWonThisRound"] = True
             whoScored["score"] = whoScored["score"] + 1
@@ -73,6 +76,10 @@ def resetScoreFunction():
     print("Score Reset.")
     player1["score"] = 0
     player2["score"] = 0
+    player1["playerWonThisRound"] = False
+    player2["playerWonThisRound"] = False
+    lcd.clear()
+    lcd.print("Player1: " + str(player1["score"]) + "      " + "Player2: " + str(player2["score"]))
 
 def setScoreToWinFunction():
     ## scoreNeededToWinGame = scoreNeededToWinGame - 1
@@ -83,10 +90,12 @@ def setScoreToWinFunction():
     ## print("Score needed to win: inf (999999)")
     print("Haha no.")
 
+lcd.clear()
+lcd.print("Player1: " + str(player1["score"]) + "      " + "Player2: " + str(player2["score"]))
+
 while True:
     time.sleep(0.01)
     led1.value = True
-    lcd.print("Hello!")
 
     if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetButtonWasPressed = True
