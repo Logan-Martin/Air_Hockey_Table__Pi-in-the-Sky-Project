@@ -107,7 +107,7 @@ lcd.print("Player1: " + str(player1["score"]) + "      " + "Player2: " + str(pla
 
 while True:
     time.sleep(0.01)
-    print("Range: {0}mm".format(vl53DistanceSensor.range))
+    # print(vl53DistanceSensor.range)
     led1.value = True
 
     if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
@@ -116,6 +116,7 @@ while True:
        resetScoreFunction()
     if resetButton.value == False and resetButtonWasPressed == True:
        resetButtonWasPressed = False
+
 
     if player1Button.value == True and scoringDebounceForPlayer1 == False and player1["playerWonThisRound"] == False:
         scoringDebounceForPlayer1 = True
@@ -132,3 +133,14 @@ while True:
         print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
     if player2Button.value == False and scoringDebounceForPlayer2 == True:
         scoringDebounceForPlayer2 = False
+
+
+    if vl53DistanceSensor.range <= 70 and scoringDebounceForPlayer1 == False and player1["playerWonThisRound"] == False:
+        print("Score Test")
+        print("Player1 scored!")
+        playerScoredFunction(player1)
+        print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
+        
+    if vl53DistanceSensor.range >= 110 and scoringDebounceForPlayer1 == True:
+        time.sleep(1)
+        scoringDebounceForPlayer1 = False
