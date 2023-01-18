@@ -24,7 +24,7 @@ lcd = LCD(interface, num_rows=rows, num_cols=cols)
 
 # Address for Distance Sensor: ['0x29']
 distanceI2C = busio.I2C(board.GP15,board.GP14) 
-vl53DistanceSensor = adafruit_vl53l0x.VL53L0X(distanceI2C)
+player1DistanceSensor = adafruit_vl53l0x.VL53L0X(distanceI2C)
 # Optionally adjust the measurement timing budget to change speed and accuracy.
 # See the example here for more details:
 #   https://github.com/pololu/vl53l0x-arduino/blob/master/examples/Single/Single.ino
@@ -107,7 +107,7 @@ lcd.print("Player1: " + str(player1["score"]) + "      " + "Player2: " + str(pla
 
 while True:
     time.sleep(0.01)
-    # print(vl53DistanceSensor.range)
+    # print(player1DistanceSensor.range)
     led1.value = True
 
     if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
@@ -117,7 +117,7 @@ while True:
     if resetButton.value == False and resetButtonWasPressed == True:
        resetButtonWasPressed = False
 
-
+# Scoring w/ buttons
     if player1Button.value == True and scoringDebounceForPlayer1 == False and player1["playerWonThisRound"] == False:
         scoringDebounceForPlayer1 = True
         print("Player1 scored!")
@@ -135,12 +135,13 @@ while True:
         scoringDebounceForPlayer2 = False
 
 
-    if vl53DistanceSensor.range <= 70 and scoringDebounceForPlayer1 == False and player1["playerWonThisRound"] == False:
+# Scoring w/ distance sensors
+    if player1DistanceSensor.range <= 70 and scoringDebounceForPlayer1 == False and player1["playerWonThisRound"] == False:
         print("Score Test")
         print("Player1 scored!")
         playerScoredFunction(player1)
         print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
         
-    if vl53DistanceSensor.range >= 110 and scoringDebounceForPlayer1 == True:
+    if player1DistanceSensor.range >= 110 and scoringDebounceForPlayer1 == True:
         time.sleep(1)
         scoringDebounceForPlayer1 = False
