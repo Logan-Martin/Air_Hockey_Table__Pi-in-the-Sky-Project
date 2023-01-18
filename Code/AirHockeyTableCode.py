@@ -3,6 +3,8 @@ import digitalio  # type: ignore
 import displayio # type: ignore
 import time
 import busio  # type: ignore
+import adafruit_vl53l0x # type: ignore
+
 
 from CircuitPython_LCDFolder.lcd.lcd import LCD, CursorMode  # type: ignore
 from CircuitPython_LCDFolder.lcd.i2c_pcf8574_interface import I2CPCF8574Interface  # type: ignore
@@ -19,9 +21,14 @@ interface = I2CPCF8574Interface(LCDi2c, i2c_address)
 lcd = LCD(interface, num_rows=rows, num_cols=cols)
 # lcd.set_cursor_mode(CursorMode.HIDE)
 
-# Address for Distance Sensor: ['0x29']
 
+# Address for Distance Sensor: ['0x29']
 distanceI2C = busio.I2C(board.GP15,board.GP14) 
+vl53DistanceSensor = adafruit_vl53l0x.VL53L0X(distanceI2C)
+# Optionally adjust the measurement timing budget to change speed and accuracy.
+# See the example here for more details:
+#   https://github.com/pololu/vl53l0x-arduino/blob/master/examples/Single/Single.ino
+# The default timing budget is 33ms, a good compromise of speed and accuracy.
 
 
 resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
@@ -100,6 +107,7 @@ lcd.print("Player1: " + str(player1["score"]) + "      " + "Player2: " + str(pla
 
 while True:
     time.sleep(0.01)
+    print("Range: {0}mm".format(vl53DistanceSensor.range))
     led1.value = True
 
     if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
