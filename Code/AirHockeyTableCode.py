@@ -14,10 +14,32 @@ i2c_sda = board.GP0
 i2c_address = 0x3f
 cols = 16
 rows = 2
-i2c = busio.I2C(scl=i2c_scl, sda=i2c_sda)
-interface = I2CPCF8574Interface(i2c, i2c_address)
+LCDi2c = busio.I2C(scl=i2c_scl, sda=i2c_sda)
+interface = I2CPCF8574Interface(LCDi2c, i2c_address)
 lcd = LCD(interface, num_rows=rows, num_cols=cols)
 # lcd.set_cursor_mode(CursorMode.HIDE)
+
+# Address for Distance Sensor: ['0x29']
+
+# import time # type: ignore
+# import board # type: ignore
+# import busio  # type: ignore
+
+# i2c = busio.I2C(board.GP15,board.GP14) 
+
+# while not i2c.try_lock():
+#    pass
+
+# try:
+#    while True:
+#        print(
+#            "I2C addresses found:",
+#            [hex(device_address) for device_address in i2c.scan()],
+#        )
+#        time.sleep(2)
+
+# finally:  # unlock the i2c bus when ctrl-c'ing out of the loop
+#    i2c.unlock()
 
 resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
