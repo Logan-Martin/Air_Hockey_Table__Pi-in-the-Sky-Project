@@ -23,12 +23,16 @@ lcd = LCD(interface, num_rows=rows, num_cols=cols)
 
 
 # Address for Distance Sensor: ['0x29']
-distanceI2C = busio.I2C(board.GP15,board.GP14) 
-player1DistanceSensor = adafruit_vl53l0x.VL53L0X(distanceI2C)
+player1distanceI2C = busio.I2C(board.GP15,board.GP14) 
+player1DistanceSensor = adafruit_vl53l0x.VL53L0X(player1distanceI2C)
 # Optionally adjust the measurement timing budget to change speed and accuracy.
 # See the example here for more details:
 #   https://github.com/pololu/vl53l0x-arduino/blob/master/examples/Single/Single.ino
 # The default timing budget is 33ms, a good compromise of speed and accuracy.
+
+# Address for Distance Sensor: 
+# player2distanceI2C = busio.I2C(board.GP15,board.GP14) 
+# player2DistanceSensor = adafruit_vl53l0x.VL53L0X(player1distanceI2C)
 
 
 resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
