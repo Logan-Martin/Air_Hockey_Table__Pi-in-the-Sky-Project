@@ -30,10 +30,13 @@ player1DistanceSensor = adafruit_vl53l0x.VL53L0X(player1distanceI2C)
 #   https://github.com/pololu/vl53l0x-arduino/blob/master/examples/Single/Single.ino
 # The default timing budget is 33ms, a good compromise of speed and accuracy.
 
-# Address for Distance Sensor: 
-# player2distanceI2C = busio.I2C(board.GP15,board.GP14) 
-# player2DistanceSensor = adafruit_vl53l0x.VL53L0X(player1distanceI2C)
-
+# p2 Distance Sensor: 
+# player2UltraSonicSensor_Trigger = digitalio.DigitalInOut(board.GP13)
+# player2UltraSonicSensor_Trigger.direction = digitalio.Direction.OUTPUT
+# player2UltraSonicSensor_Echo = digitalio.DigitalInOut(board.GP12)
+# player2UltraSonicSensor_Echo.direction = digitalio.Direction.INPUT
+import adafruit_hcsr04 # type: ignore
+sonar = adafruit_hcsr04.HCSR04(trigger_pin=board.D5, echo_pin=board.D6)
 
 resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
@@ -113,7 +116,7 @@ while True:
     time.sleep(0.01)
     # print(player1DistanceSensor.range)
     led1.value = True
-
+    print(sonar.distance)
     if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetButtonWasPressed = True
        player1["playerWonThisRound"] = False
