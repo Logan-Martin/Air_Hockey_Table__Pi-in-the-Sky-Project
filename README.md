@@ -21,3 +21,4 @@ This week I confirmed the model for the middle supports of the fans and also add
 
 ### Week of 1-16-2023
 #### CAD
+This week some of the pieces got put together in real life and work on puck receiver started. Next week will be fitting sensors and other parts inside the box.
