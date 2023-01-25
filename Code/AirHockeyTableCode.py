@@ -36,7 +36,7 @@ player1DistanceSensor = adafruit_vl53l0x.VL53L0X(player1distanceI2C)
 # player2UltraSonicSensor_Echo = digitalio.DigitalInOut(board.GP12)
 # player2UltraSonicSensor_Echo.direction = digitalio.Direction.INPUT
 import adafruit_hcsr04 # type: ignore
-sonar = adafruit_hcsr04.HCSR04(trigger_pin=board.D5, echo_pin=board.D6)
+sonar = adafruit_hcsr04.HCSR04(trigger_pin=board.GP13, echo_pin=board.GP12)
 
 resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
@@ -116,7 +116,11 @@ while True:
     time.sleep(0.01)
     # print(player1DistanceSensor.range)
     led1.value = True
-    print(sonar.distance)
+    try:
+        print((sonar.distance,))
+    except RuntimeError:
+        print("Retrying!")
+    time.sleep(2)
     if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetButtonWasPressed = True
        player1["playerWonThisRound"] = False
