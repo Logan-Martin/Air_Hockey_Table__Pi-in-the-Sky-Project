@@ -30,7 +30,8 @@ player1DistanceSensor = adafruit_vl53l0x.VL53L0X(player1distanceI2C)
 # Address for Distance Sensor: ???
 player2distanceI2C = busio.I2C(board.GP13,board.GP12) 
 player2DistanceSensor = adafruit_vl53l0x.VL53L0X(player2distanceI2C)
-
+# CHECK THIS OUT: https://learn.adafruit.com/adafruit-vl53l0x-micro-lidar-distance-sensor-breakout?view=all
+# Need to change the address of the 2nd distance sensor.
 
 resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT

@@ -3,7 +3,7 @@ import time # type: ignore
 import board # type: ignore
 import busio  # type: ignore
 
-i2c = busio.I2C(board.GP15,board.GP14) 
+i2c = busio.I2C(board.GP13,board.GP12) 
 
 while not i2c.try_lock():
     pass
