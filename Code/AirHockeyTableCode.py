@@ -18,7 +18,6 @@ rows = 2
 LCDi2c = busio.I2C(scl=i2c_scl, sda=i2c_sda)
 interface = I2CPCF8574Interface(LCDi2c, i2c_address)
 lcd = LCD(interface, num_rows=rows, num_cols=cols)
-# lcd.set_cursor_mode(CursorMode.HIDE)
 
 # Address for Distance Sensor: ['0x29']
 player1distanceI2C = busio.I2C(board.GP15,board.GP14) 
@@ -110,30 +109,14 @@ lcd.print("Player1: " + str(player1["score"]) + "      " + "Player2: " + str(pla
 while True:
     time.sleep(0.01)
     led1.value = True
+
+# Reset Button
     if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetButtonWasPressed = True
        player1["playerWonThisRound"] = False
        resetScoreFunction()
     if resetButton.value == False and resetButtonWasPressed == True:
        resetButtonWasPressed = False
-
-# Scoring w/ buttons
-    if player1Button.value == True and scoringDebounceForPlayer1 == False and player1["playerWonThisRound"] == False:
-        scoringDebounceForPlayer1 = True
-        print("Player1 scored!")
-        playerScoredFunction(player1)
-        print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
-    if player1Button.value == False and scoringDebounceForPlayer1 == True:
-        scoringDebounceForPlayer1 = False
-
-    if player2Button.value == True and scoringDebounceForPlayer2 == False and player2["playerWonThisRound"] == False:
-        scoringDebounceForPlayer2 = True
-        print("Player2 scored!")
-        playerScoredFunction(player2)
-        print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
-    if player2Button.value == False and scoringDebounceForPlayer2 == True:
-        scoringDebounceForPlayer2 = False
-
 
 # Scoring w/ distance sensors
     if player1DistanceSensor.range <= 70 and scoringDebounceForPlayer1 == False and player1["playerWonThisRound"] == False:
@@ -145,3 +128,13 @@ while True:
     if player1DistanceSensor.range >= 110 and scoringDebounceForPlayer1 == True:
         time.sleep(1)
         scoringDebounceForPlayer1 = False
+    
+    if player2DistanceSensor.range <= 70 and scoringDebounceForPlayer2 == False and player2["playerWonThisRound"] == False:
+        print("Score Test")
+        print("Player1 scored!")
+        playerScoredFunction(player2)
+        print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
+        
+    if player2DistanceSensor.range >= 110 and scoringDebounceForPlayer2 == True:
+        time.sleep(1)
+        scoringDebounceForPlayer2 = False
