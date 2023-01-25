@@ -8,7 +8,7 @@ Our Pi in the Sky Project repo
 This week I adjusted the pillars on the sides up 3mm in order to account for the socket heads of the screws. I also added some basic walls.
 
 <details>
-<summary>Code (1/4/2023)?</summary>
+<summary>Code (1/4/2023)</summary>
 <br>
 
 ``` python
