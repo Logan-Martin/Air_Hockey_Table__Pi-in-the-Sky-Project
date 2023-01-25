@@ -5,7 +5,6 @@ import time
 import busio  # type: ignore
 import adafruit_vl53l0x # type: ignore
 
-
 from CircuitPython_LCDFolder.lcd.lcd import LCD, CursorMode  # type: ignore
 from CircuitPython_LCDFolder.lcd.i2c_pcf8574_interface import I2CPCF8574Interface  # type: ignore
 # http://www.penguintutor.com/electronics/pico-lcd
@@ -21,7 +20,6 @@ interface = I2CPCF8574Interface(LCDi2c, i2c_address)
 lcd = LCD(interface, num_rows=rows, num_cols=cols)
 # lcd.set_cursor_mode(CursorMode.HIDE)
 
-
 # Address for Distance Sensor: ['0x29']
 player1distanceI2C = busio.I2C(board.GP15,board.GP14) 
 player1DistanceSensor = adafruit_vl53l0x.VL53L0X(player1distanceI2C)
@@ -30,13 +28,10 @@ player1DistanceSensor = adafruit_vl53l0x.VL53L0X(player1distanceI2C)
 #   https://github.com/pololu/vl53l0x-arduino/blob/master/examples/Single/Single.ino
 # The default timing budget is 33ms, a good compromise of speed and accuracy.
 
-# p2 Distance Sensor: 
-# player2UltraSonicSensor_Trigger = digitalio.DigitalInOut(board.GP13)
-# player2UltraSonicSensor_Trigger.direction = digitalio.Direction.OUTPUT
-# player2UltraSonicSensor_Echo = digitalio.DigitalInOut(board.GP12)
-# player2UltraSonicSensor_Echo.direction = digitalio.Direction.INPUT
-import adafruit_hcsr04 # type: ignore
-sonar = adafruit_hcsr04.HCSR04(trigger_pin=board.GP13, echo_pin=board.GP12)
+# Address for Distance Sensor: ???
+player2distanceI2C = busio.I2C(board.GP13,board.GP12) 
+player2DistanceSensor = adafruit_vl53l0x.VL53L0X(player2distanceI2C)
+
 
 resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
@@ -114,13 +109,7 @@ lcd.print("Player1: " + str(player1["score"]) + "      " + "Player2: " + str(pla
 
 while True:
     time.sleep(0.01)
-    # print(player1DistanceSensor.range)
     led1.value = True
-    try:
-        print((sonar.distance,))
-    except RuntimeError:
-        print("Retrying!")
-    time.sleep(2)
     if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetButtonWasPressed = True
        player1["playerWonThisRound"] = False
