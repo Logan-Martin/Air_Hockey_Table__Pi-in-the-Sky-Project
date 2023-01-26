@@ -1,0 +1,20 @@
+import time
+import board # type: ignore
+import busio  # type: ignore
+from digitalio import DigitalInOut # type: ignore
+import adafruit_vl53l0x # type: ignore
+
+i2c = busio.I2C(board.GP15,board.GP14) 
+sensor = adafruit_vl53l0x.VL53L0X(i2c)
+# Default Address: 0x29
+# sensor.set_address(0x30)
+
+xshut = [
+    DigitalInOut(board.GP11),
+    DigitalInOut(board.GP10),
+    # add more VL53L0X sensors by defining their SHDN pins here
+]
+
+while True:
+    print("Range: {0}mm".format(sensor.range))
+    time.sleep(1.0)
