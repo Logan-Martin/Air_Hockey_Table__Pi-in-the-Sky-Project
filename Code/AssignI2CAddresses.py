@@ -3,8 +3,8 @@ import time  # type: ignore
 import board  # type: ignore
 import busio  # type: ignore
 
-from digitalio import DigitalInOut
-from adafruit_vl53l0x import VL53L0X
+from digitalio import DigitalInOut # type: ignore
+from adafruit_vl53l0x import VL53L0X # type: ignore
 
 i2c = busio.I2C(board.GP15,board.GP14) # declare the singleton variable for the default I2C bus
 
