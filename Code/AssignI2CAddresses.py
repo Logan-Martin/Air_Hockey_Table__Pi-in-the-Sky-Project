@@ -37,7 +37,7 @@ def detect_range(count=50):
     """take count=5 samples"""
     while count:
         for index, sensor in enumerate(vl53):
-        print("Sensor {} Range: {}mm".format(index + 1, sensor.distance))
+            print("Sensor {} Range: {}mm".format(index + 1, sensor.distance))
         time.sleep(.1)
         count -= 1
 
