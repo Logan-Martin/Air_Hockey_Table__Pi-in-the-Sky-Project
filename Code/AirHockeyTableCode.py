@@ -1,10 +1,10 @@
 import board # type: ignore
 import digitalio  # type: ignore
-import displayio # type: ignore
-import time
+import time # type: ignore
 import busio  # type: ignore
 import adafruit_vl53l0x # type: ignore
-
+from digitalio import DigitalInOut # type: ignore
+from adafruit_vl53l0x import VL53L0X # type: ignore
 from CircuitPython_LCDFolder.lcd.lcd import LCD, CursorMode  # type: ignore
 from CircuitPython_LCDFolder.lcd.i2c_pcf8574_interface import I2CPCF8574Interface  # type: ignore
 # http://www.penguintutor.com/electronics/pico-lcd
@@ -18,20 +18,6 @@ rows = 2
 LCDi2c = busio.I2C(scl=i2c_scl, sda=i2c_sda)
 interface = I2CPCF8574Interface(LCDi2c, i2c_address)
 lcd = LCD(interface, num_rows=rows, num_cols=cols)
-
-# Address for Distance Sensor: ['0x29']
-player1distanceI2C = busio.I2C(board.GP15,board.GP14) 
-player1DistanceSensor = adafruit_vl53l0x.VL53L0X(player1distanceI2C)
-# Optionally adjust the measurement timing budget to change speed and accuracy.
-# See the example here for more details:
-#   https://github.com/pololu/vl53l0x-arduino/blob/master/examples/Single/Single.ino
-# The default timing budget is 33ms, a good compromise of speed and accuracy.
-
-# Address for Distance Sensor: ???
-player2distanceI2C = busio.I2C(board.GP13,board.GP12) 
-player2DistanceSensor = adafruit_vl53l0x.VL53L0X(player2distanceI2C)
-# CHECK THIS OUT: https://learn.adafruit.com/adafruit-vl53l0x-micro-lidar-distance-sensor-breakout?view=all
-# Need to change the address of the 2nd distance sensor.
 
 resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
@@ -59,13 +45,28 @@ player2 = {
     "playerWonThisRound" : False
 }
 
-player1Button = digitalio.DigitalInOut(board.GP2) # Button stuff
-player1Button.direction = digitalio.Direction.INPUT
-player1Button.pull = digitalio.Pull.DOWN
+# Distance Sensor Stuff:
+i2c = busio.I2C(board.GP15,board.GP14) # declare the singleton variable for the default I2C bus
+xshut = [ # declare the digital output pins connected to the "SHDN" pin on each VL53L0X sensor
+    DigitalInOut(board.GP11), # 2
+    DigitalInOut(board.GP10), # 1
+    # add more VL53L0X sensors by defining their SHDN pins here
+]
 
-player2Button = digitalio.DigitalInOut(board.GP3) # Button stuff
-player2Button.direction = digitalio.Direction.INPUT
-player2Button.pull = digitalio.Pull.DOWN
+for power_pin in xshut:
+    # make sure these pins are a digital output, not a digital input
+    power_pin.switch_to_output(value=False)
+# all VL53L0X sensors are now off
+
+vl53 = [] # initialize a list to be used for the array of VL53L0X sensors
+for i, power_pin in enumerate(xshut): # now change the addresses of the VL53L0X sensors
+    power_pin.value = True # turn on the VL53L0X to allow hardware check
+    # instantiate the VL53L0X sensor on the I2C bus & insert it into the "vl53" list
+    vl53.insert(i, VL53L0X(i2c))  # also performs VL53L0X hardware check
+    if i < len(xshut) - 1:
+        vl53[i].set_address(i + 0x30)  # address assigned should NOT be already in use
+# --- Distance Sensor End --- #
+
 
 def playerWonFunction(whoScored):
     print(str(whoScored["name"]) + " won the game!")
@@ -95,15 +96,6 @@ def resetScoreFunction():
     lcd.clear()
     lcd.print("Player1: " + str(player1["score"]) + "      " + "Player2: " + str(player2["score"]))
 
-def setScoreToWinFunction():
-    ## scoreNeededToWinGame = scoreNeededToWinGame - 1
-    ## scoreNeededToWinGame = scoreNeededToWinGame + 1
-    ## scoreNeededToWinGame = 999999 ## This is the inf setting
-
-    ## print("Score needed to win: " + str(scoreNeededToWinGame))
-    ## print("Score needed to win: inf (999999)")
-    print("Haha no.")
-
 lcd.clear()
 lcd.print("Player1: " + str(player1["score"]) + "      " + "Player2: " + str(player2["score"]))
 
@@ -119,23 +111,19 @@ while True:
     if resetButton.value == False and resetButtonWasPressed == True:
        resetButtonWasPressed = False
 
-# Scoring w/ distance sensors
-    if player1DistanceSensor.range <= 70 and scoringDebounceForPlayer1 == False and player1["playerWonThisRound"] == False:
-        print("Score Test")
-        print("Player1 scored!")
-        playerScoredFunction(player1)
-        print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
-        
-    if player1DistanceSensor.range >= 110 and scoringDebounceForPlayer1 == True:
-        time.sleep(1)
-        scoringDebounceForPlayer1 = False
-    
-    if player2DistanceSensor.range <= 70 and scoringDebounceForPlayer2 == False and player2["playerWonThisRound"] == False:
-        print("Score Test")
-        print("Player1 scored!")
-        playerScoredFunction(player2)
-        print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
-        
-    if player2DistanceSensor.range >= 110 and scoringDebounceForPlayer2 == True:
-        time.sleep(1)
-        scoringDebounceForPlayer2 = False
+
+# Scoring w/ Distance Sensors:
+    for index, sensor in enumerate(vl53):
+        time.sleep(0.1)
+        if index == 0:
+            if sensor.distance < 5 and scoringDebounceForPlayer1 == False and player1["playerWonThisRound"] == False:
+                print("Player 1 OMG SCORING YAAAAH!")
+                playerScoredFunction(player1)
+            elif sensor.range >= 110 and scoringDebounceForPlayer1 == True:
+                scoringDebounceForPlayer1 = False
+
+        #elif index == 1:
+            #if sensor.distance < 5:
+                #print("PLAYER 2 OMG SCORING YAAAAH!")
+        # print("Sensor {} Range: {}mm".format(index + 1, sensor.distance))
+
