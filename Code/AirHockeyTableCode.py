@@ -65,7 +65,6 @@ for i, power_pin in enumerate(xshut): # now change the addresses of the VL53L0X 
     vl53.insert(i, VL53L0X(i2c))  # also performs VL53L0X hardware check
     if i < len(xshut) - 1:
         vl53[i].set_address(i + 0x30)  # address assigned should NOT be already in use
-# --- Distance Sensor End --- #
 
 
 def playerWonFunction(whoScored):
@@ -99,12 +98,14 @@ def resetScoreFunction():
 lcd.clear()
 lcd.print("Player1: " + str(player1["score"]) + "      " + "Player2: " + str(player2["score"]))
 
+print("Done starting up!")
+
 while True:
-    time.sleep(0.01)
+    # time.sleep(0.01)
     led1.value = True
 
 # Reset Button
-    if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
+    if resetButton.value == True and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetButtonWasPressed = True
        player1["playerWonThisRound"] = False
        resetScoreFunction()
@@ -114,16 +115,19 @@ while True:
 
 # Scoring w/ Distance Sensors:
     for index, sensor in enumerate(vl53):
-        time.sleep(0.1)
+        time.sleep(0.05)
         if index == 0:
-            if sensor.distance < 5 and scoringDebounceForPlayer1 == False and player1["playerWonThisRound"] == False:
-                print("Player 1 OMG SCORING YAAAAH!")
+            if sensor.distance < 12 and sensor.distance > 8 and  scoringDebounceForPlayer1 == False and player1["playerWonThisRound"] == False:
+                # print("Player 1 OMG SCORING YAAAAH!")
                 playerScoredFunction(player1)
-            elif sensor.range >= 110 and scoringDebounceForPlayer1 == True:
+            if sensor.distance > 30 and scoringDebounceForPlayer1 == True:
                 scoringDebounceForPlayer1 = False
 
-        #elif index == 1:
-            #if sensor.distance < 5:
-                #print("PLAYER 2 OMG SCORING YAAAAH!")
+        if index == 1:
+            # print("Sensor {} Range: {}mm".format(index + 1, sensor.distance))
+            if sensor.distance < 12 and sensor.distance > 8 and scoringDebounceForPlayer2 == False and player2["playerWonThisRound"] == False:
+                playerScoredFunction(player2)
+            if sensor.distance > 30 and scoringDebounceForPlayer2 == True:
+               scoringDebounceForPlayer2 = False
         # print("Sensor {} Range: {}mm".format(index + 1, sensor.distance))
 
