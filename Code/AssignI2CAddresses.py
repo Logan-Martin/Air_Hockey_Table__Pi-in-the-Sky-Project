@@ -33,12 +33,12 @@ for i, power_pin in enumerate(xshut): # now change the addresses of the VL53L0X 
     if i < len(xshut) - 1:
         vl53[i].set_address(i + 0x30)  # address assigned should NOT be already in use
 
-def detect_range(count=5):
+def detect_range(count=50):
     """take count=5 samples"""
     while count:
         for index, sensor in enumerate(vl53):
-            print("Sensor {} Range: {}mm".format(index + 1, sensor.range))
-        time.sleep(1.0)
+        print("Sensor {} Range: {}mm".format(index + 1, sensor.distance))
+        time.sleep(.1)
         count -= 1
 
 
