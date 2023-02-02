@@ -29,8 +29,8 @@ led1.direction = digitalio.Direction.OUTPUT
 
 scoreNeededToWinGame = 7
 someoneWonTheGame = False
-scoringDebounceForPlayer1 = False
-scoringDebounceForPlayer2 = False
+player1_can_score = True
+player2_can_score = True
 
 player1 = {
     "name" : "player1", ## maybe let people enter their own names?
@@ -117,17 +117,19 @@ while True:
     for index, sensor in enumerate(vl53):
         time.sleep(0.05)
         if index == 0:
-            if sensor.distance < 12 and sensor.distance > 8 and  scoringDebounceForPlayer1 == False and player1["playerWonThisRound"] == False:
+            if sensor.distance < 12 and sensor.distance > 8 and player1["playerWonThisRound"] == False and player1_can_score == True:
+                player1_can_score = False
                 # print("Player 1 OMG SCORING YAAAAH!")
                 playerScoredFunction(player1)
-            if sensor.distance > 30 and scoringDebounceForPlayer1 == True:
-                scoringDebounceForPlayer1 = False
+            if sensor.distance > 30 and player1_can_score == True:
+                player1_can_score = False
 
         if index == 1:
             # print("Sensor {} Range: {}mm".format(index + 1, sensor.distance))
-            if sensor.distance < 12 and sensor.distance > 8 and scoringDebounceForPlayer2 == False and player2["playerWonThisRound"] == False:
+            if sensor.distance < 14 and sensor.distance > 10 and player2["playerWonThisRound"] == False and player2_can_score == True:
+                player2_can_score = False
                 playerScoredFunction(player2)
-            if sensor.distance > 30 and scoringDebounceForPlayer2 == True:
-               scoringDebounceForPlayer2 = False
+            if sensor.distance > 30 and player2_can_score == True:
+               player2_can_score = False
         # print("Sensor {} Range: {}mm".format(index + 1, sensor.distance))
 
