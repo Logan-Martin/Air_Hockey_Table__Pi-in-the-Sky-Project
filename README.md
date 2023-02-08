@@ -3,118 +3,50 @@ Our Pi in the Sky Project repo
 
 &nbsp;
 
-### Week of 1-2-2023
-#### CAD
+
+### Week of 1/2/2023
+#### CAD:
 This week I adjusted the pillars on the sides up 3mm in order to account for the socket heads of the screws. I also added some basic walls.
 
-<details>
-<summary>Code (1/4/2023)</summary>
-<br>
+#### Code:
+- Link to Code (1/4/2023): https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/e0d8a948c9e20a26cdbd912a6f2891ffc34bfc92/Code/AirHockeyTableCode.py
+- Notes: Player scoring seemed to break at the begining of the week, but was later fixed. So, messing w/ player scoring and the reset button.
 
-``` python
 
-import board # type: ignore
-import digitalio  # type: ignore
-import time
 
-resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
-resetButton.direction = digitalio.Direction.INPUT
-resetButton.pull = digitalio.Pull.DOWN
-resetButtonWasPressed = False
-
-led1 = digitalio.DigitalInOut(board.GP19)
-led1.direction = digitalio.Direction.OUTPUT
-
-scoreNeededToWinGame = 7
-someoneWonTheGame = False
-scoringDebounceForPlayer1 = False
-scoringDebounceForPlayer2 = False
-
-player1 = {
-    "name" : "player1", ## maybe let people enter their own names?
-    "score": 0,
-    "winCount" : 0,
-    "playerWonThisRound" : False
-}
-player2 = {
-    "name" : "player2",
-    "score": 0,
-    "winCount" : 0,
-    "playerWonThisRound" : False
-}
-
-player1Button = digitalio.DigitalInOut(board.GP2) # Button stuff
-player1Button.direction = digitalio.Direction.INPUT
-player1Button.pull = digitalio.Pull.DOWN
-
-player2Button = digitalio.DigitalInOut(board.GP3) # Button stuff
-player2Button.direction = digitalio.Direction.INPUT
-player2Button.pull = digitalio.Pull.DOWN
-
-def playerWonFunction(whoScored):
-    print(str(whoScored["name"]) + " won the game!")
-    whoScored["winCount"] = whoScored["winCount"] + 1
-
-def playerScoredFunction(whoScored):
-    if player1["playerWonThisRound"] == False and player2["playerWonThisRound"] == False: ## if nobody won yet
-        if whoScored["score"] + 1 != scoreNeededToWinGame:
-            whoScored["score"] = whoScored["score"] + 1
-        else:
-            whoScored["playerWonThisRound"] = True
-            whoScored["score"] = whoScored["score"] + 1
-            playerWonFunction(whoScored)
-    else:
-        print("Reset score to play again.")
-            
-def resetScoreFunction():
-    print("Score Reset.")
-    player1["score"] = 0
-    player2["score"] = 0
-
-def setScoreToWinFunction():
-    ## scoreNeededToWinGame = scoreNeededToWinGame - 1
-    ## scoreNeededToWinGame = scoreNeededToWinGame + 1
-    ## scoreNeededToWinGame = 999999 ## This is the inf setting
-
-    ## print("Score needed to win: " + str(scoreNeededToWinGame))
-    ## print("Score needed to win: inf (999999)")
-    print("Haha no.")
-
-while True:
-    time.sleep(0.01)
-    led1.value = True
-    if resetButton.value == True and player1["score"] + player2["score"] != 0 and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
-       resetButtonWasPressed = True
-       player1["playerWonThisRound"] = False
-       resetScoreFunction()
-    if resetButton.value == False and resetButtonWasPressed == True:
-       resetButtonWasPressed = False
-
-    if player1Button.value == True and scoringDebounceForPlayer1 == False and player1["playerWonThisRound"] == False:
-        scoringDebounceForPlayer1 = True
-        print("Player1 scored!")
-        playerScoredFunction(player1)
-        print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
-    if player1Button.value == False and scoringDebounceForPlayer1 == True:
-        scoringDebounceForPlayer1 = False
-
-    if player2Button.value == True and scoringDebounceForPlayer2 == False and player2["playerWonThisRound"] == False:
-        scoringDebounceForPlayer2 = True
-        print("Player2 scored!")
-        playerScoredFunction(player2)
-        print("Score: " + "P1 - " + str(player1["score"]) + ", " + "P2 - " + str(player2["score"]))
-    if player2Button.value == False and scoringDebounceForPlayer2 == True:
-        scoringDebounceForPlayer2 = False
-
-```
-
-</details>
-
-### Week of 1-9-2023
-#### CAD
+### Week of 1/9/2023
+#### CAD:
 This week I confirmed the model for the middle supports of the fans and also added a base for the air hockey table and receptacles for the pucks. Most things are getting 3-D printed over the weekend. Next week will be basic assembly of the pillars and fans in order to figure out how to apply the circuit board and other electronics.
 
+#### Code:
+- Link to Code (1/12/2023): https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/9c42973c04ebff49a86cc5cd290a6d5ad04bbca9/Code/AirHockeyTableCode.py
+- Notes: Trying to unlock/lock i2c devices. Well, first finding the address, and then going crazy because yes. The code could only would with one i2c for the LCD. Might be an issue later, cough cough it was, but that doesn't matter. Anyways, the LCD apparently worked at this point.
 
-### Week of 1-16-2023
+
+
+### Week of 1/16/2023
 #### CAD
 This week some of the pieces got put together in real life and work on puck receiver started. Next week will be fitting sensors and other parts inside the box.
+
+#### Code:
+- Link to Code (1/12/2023): https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/c005875d9523dc01ff9da4728bf7b6b127cd3f1b/Code/AirHockeyTableCode.py
+- Notes: Put code for searching i2c addresses into it's own file. Trying to now use distance sensor, one of them, and it wasn't working. Changing some names of variables around.
+
+
+### Week of 1/23/2023
+#### CAD
+no entry yet
+
+#### Code:
+- Link to Code (1/26/2023): https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/dbf2e9b68d2536f0424aa0f3236083821379db28/Code/SearchForI2CAddressCode.py
+- Notes: Getting one distance sensor to work. Then, with scoring. Changing pins. It work w/ one. cool.
+
+### Week of 1/30/2023
+#### CAD
+no entry yet
+
+#### Code:
+- Link to Code (2/2/2023): https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/c37ed72708385dfef34a0d3229d6141b35cec875/Code/AirHockeyTableCode.py
+- Notes: This is when code was mostly done/working. Shutting down pins testing, didn't work, then I re-coded it, and it worked so yay! Print statements for checking to see what worked and what didn't. One of the errors was using `` sensor.range `` instead of ``` sensor.distance ```. Make sure to use distance if, ya know, you are looking for the distance. It was then just a matter of copy and pasting different files of code that I had made. Finally, I messed with some certain values that allow the player to score or not. I also noticed I had two debounce systems for stopping the player from scoring, so I got rid of one and changed more variable names.
+
+
