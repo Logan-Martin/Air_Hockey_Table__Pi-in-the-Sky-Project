@@ -51,5 +51,5 @@ no entry yet
 
 #### Images:
 
-<img src="https://user-images.githubusercontent.com/71342159/217565048-3209a2c7-22f0-437b-aaf2-e5d517898692.jpg" width="420" height="300" />
+<img src="https://user-images.githubusercontent.com/71342159/217565048-3209a2c7-22f0-437b-aaf2-e5d517898692.jpg" width="450" height="300" />
 
