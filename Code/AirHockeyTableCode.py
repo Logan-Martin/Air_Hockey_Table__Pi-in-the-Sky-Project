@@ -10,13 +10,12 @@ from CircuitPython_LCDFolder.lcd.i2c_pcf8574_interface import I2CPCF8574Interfac
 # http://www.penguintutor.com/electronics/pico-lcd
 # Make sure to have at least 5v. Pico only gives 3 volts. use battery back.
 # address = 0x3f
-i2c_scl = board.GP1
-i2c_sda = board.GP0
+
 i2c_address = 0x3f
 cols = 16
 rows = 2
-LCDi2c = busio.I2C(scl=i2c_scl, sda=i2c_sda)
-interface = I2CPCF8574Interface(LCDi2c, i2c_address)
+i2c_bus_0 = busio.I2C(board.GP1, board.GP0)
+interface = I2CPCF8574Interface(i2c_bus_0, i2c_address)
 lcd = LCD(interface, num_rows=rows, num_cols=cols)
 
 resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
@@ -46,32 +45,20 @@ player2 = {
 }
 
 # Distance Sensor Stuff:
-i2c = busio.I2C(board.GP15,board.GP14) # declare the singleton variable for the default I2C bus
-xshut = [ # declare the digital output pins connected to the "SHDN" pin on each VL53L0X sensor
-    DigitalInOut(board.GP11), # 2
-    DigitalInOut(board.GP10), # 1
-    # add more VL53L0X sensors by defining their SHDN pins here
-]
+distanceSensor_player1 = VL53L0X(i2c_bus_0)
 
-for power_pin in xshut:
-    # make sure these pins are a digital output, not a digital input
-    power_pin.switch_to_output(value=False)
-# all VL53L0X sensors are now off
+i2c_bus_1 = busio.I2C(board.GP15,board.GP14) # declare the singleton variable for the default I2C bus
+distanceSensor_player2 = VL53L0X(i2c_bus_1)
 
-vl53 = [] # initialize a list to be used for the array of VL53L0X sensors
-for i, power_pin in enumerate(xshut): # now change the addresses of the VL53L0X sensors
-    power_pin.value = True # turn on the VL53L0X to allow hardware check
-    # instantiate the VL53L0X sensor on the I2C bus & insert it into the "vl53" list
-    vl53.insert(i, VL53L0X(i2c))  # also performs VL53L0X hardware check
-    if i < len(xshut) - 1:
-        vl53[i].set_address(i + 0x30)  # address assigned should NOT be already in use
-
-
+time_before_autoreset = 5
 def playerWonFunction(whoScored):
     print(str(whoScored["name"]) + " won the game!")
     whoScored["winCount"] = whoScored["winCount"] + 1
     lcd.clear()
     lcd.print(str(whoScored["name"]) + " won the game!")
+
+    time.sleep(time_before_autoreset)
+    resetScoreFunction()
 
 def playerScoredFunction(whoScored):
     if player1["playerWonThisRound"] == False and player2["playerWonThisRound"] == False: ## if nobody won yet
@@ -107,29 +94,23 @@ while True:
 # Reset Button
     if resetButton.value == True and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetButtonWasPressed = True
-       player1["playerWonThisRound"] = False
        resetScoreFunction()
     if resetButton.value == False and resetButtonWasPressed == True:
        resetButtonWasPressed = False
 
 
 # Scoring w/ Distance Sensors:
-    for index, sensor in enumerate(vl53):
-        time.sleep(0.05)
-        if index == 0:
-            if sensor.distance < 12 and sensor.distance > 8 and player1["playerWonThisRound"] == False and player1_can_score == True:
-                player1_can_score = False
-                # print("Player 1 OMG SCORING YAAAAH!")
-                playerScoredFunction(player1)
-            if sensor.distance > 30 and player1_can_score == True:
-                player1_can_score = False
+    time.sleep(0.05)
+    if distanceSensor_player1.distance < 15 and distanceSensor_player1.distance > 10 and player1["playerWonThisRound"] == False and player1_can_score == True:
+        player1_can_score = False
+        print("Player 1 OMG SCORING YAAAAH!")
+        playerScoredFunction(player1)
+    if distanceSensor_player1.distance > 15 and player1_can_score == False:
+        player1_can_score = True
 
-        if index == 1:
-            # print("Sensor {} Range: {}mm".format(index + 1, sensor.distance))
-            if sensor.distance < 14 and sensor.distance > 10 and player2["playerWonThisRound"] == False and player2_can_score == True:
-                player2_can_score = False
-                playerScoredFunction(player2)
-            if sensor.distance > 30 and player2_can_score == True:
-               player2_can_score = False
-        # print("Sensor {} Range: {}mm".format(index + 1, sensor.distance))
+    if distanceSensor_player2.distance < 15 and distanceSensor_player2.distance > 10 and player2["playerWonThisRound"] == False and player2_can_score == True:
+        player2_can_score = False
+        playerScoredFunction(player2)
+    if distanceSensor_player2.distance > 15 and player2_can_score == False:
+        player2_can_score = True
 
