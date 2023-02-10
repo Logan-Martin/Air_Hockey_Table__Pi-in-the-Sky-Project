@@ -85,9 +85,7 @@ lcd.print("Player1: " + str(player1["score"]) + "      " + "Player2: " + str(pla
 print("Done starting up!")
 
 while True:
-    # time.sleep(0.01)
-    led1.value = True
-
+    
 # Reset Button
     if resetButton.value == True and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetButtonWasPressed = True
