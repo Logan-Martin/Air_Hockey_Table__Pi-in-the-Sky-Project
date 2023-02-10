@@ -20,7 +20,7 @@ lcd = LCD(interface, num_rows=rows, num_cols=cols)
 
 resetButton = digitalio.DigitalInOut(board.GP10) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
-resetButton.pull = digitalio.Pull.DOWN
+resetButton.pull = digitalio.Pull.DOWN # power is connected to 3volts and ground pin is connected to the pin. 
 resetButtonWasPressed = False
 
 scoreNeededToWinGame = 7
@@ -56,7 +56,7 @@ def playerWonFunction(whoScored):
 
     time.sleep(time_before_autoreset)
     resetScoreFunction()
-
+#hjrfg
 def playerScoredFunction(whoScored):
     if player1["playerWonThisRound"] == False and player2["playerWonThisRound"] == False: ## if nobody won yet
         if whoScored["score"] + 1 != scoreNeededToWinGame:
@@ -96,16 +96,16 @@ while True:
 
 # Scoring w/ Distance Sensors:
     time.sleep(0.05)
-    if distanceSensor_player1.distance < 15 and distanceSensor_player1.distance > 10 and player1["playerWonThisRound"] == False and player1_can_score == True:
+    if distanceSensor_player1.distance < 8 and distanceSensor_player1.distance > 4 and player1["playerWonThisRound"] == False and player1_can_score == True:
         player1_can_score = False
         print("Player 1 OMG SCORING YAAAAH!")
         playerScoredFunction(player1)
-    if distanceSensor_player1.distance > 15 and player1_can_score == False:
+    if distanceSensor_player1.distance > 10 and player1_can_score == False:
         player1_can_score = True
 
-    if distanceSensor_player2.distance < 15 and distanceSensor_player2.distance > 10 and player2["playerWonThisRound"] == False and player2_can_score == True:
+    if distanceSensor_player2.distance < 8 and distanceSensor_player2.distance > 4 and player2["playerWonThisRound"] == False and player2_can_score == True:
         player2_can_score = False
         playerScoredFunction(player2)
-    if distanceSensor_player2.distance > 15 and player2_can_score == False:
+    if distanceSensor_player2.distance > 10 and player2_can_score == False:
         player2_can_score = True
 
