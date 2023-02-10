@@ -18,13 +18,10 @@ i2c_bus_0 = busio.I2C(board.GP1, board.GP0)
 interface = I2CPCF8574Interface(i2c_bus_0, i2c_address)
 lcd = LCD(interface, num_rows=rows, num_cols=cols)
 
-resetButton = digitalio.DigitalInOut(board.GP18) # Button stuff
+resetButton = digitalio.DigitalInOut(board.GP10) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
 resetButton.pull = digitalio.Pull.DOWN
 resetButtonWasPressed = False
-
-led1 = digitalio.DigitalInOut(board.GP19)
-led1.direction = digitalio.Direction.OUTPUT
 
 scoreNeededToWinGame = 7
 someoneWonTheGame = False
