@@ -14,7 +14,7 @@ from CircuitPython_LCDFolder.lcd.i2c_pcf8574_interface import I2CPCF8574Interfac
 i2c_address = 0x3f
 cols = 16
 rows = 2
-i2c_bus_0 = busio.I2C(board.GP1, board.GP0)
+i2c_bus_0 = busio.I2C(board.GP1, board.GP0) # 1 rn
 interface = I2CPCF8574Interface(i2c_bus_0, i2c_address)
 lcd = LCD(interface, num_rows=rows, num_cols=cols)
 
@@ -95,10 +95,9 @@ while True:
 
 
 # Scoring w/ Distance Sensors:
-    time.sleep(0.05)
+    # time.sleep(0.05)
     if distanceSensor_player1.distance < 8 and distanceSensor_player1.distance > 4 and player1["playerWonThisRound"] == False and player1_can_score == True:
         player1_can_score = False
-        print("Player 1 OMG SCORING YAAAAH!")
         playerScoredFunction(player1)
     if distanceSensor_player1.distance > 10 and player1_can_score == False:
         player1_can_score = True
