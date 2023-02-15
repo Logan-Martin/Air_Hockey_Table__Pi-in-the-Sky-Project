@@ -2,14 +2,12 @@ import board # type: ignore
 import digitalio  # type: ignore
 import time # type: ignore
 import busio  # type: ignore
-import adafruit_vl53l0x # type: ignore
 from digitalio import DigitalInOut # type: ignore
 from adafruit_vl53l0x import VL53L0X # type: ignore
 from CircuitPython_LCDFolder.lcd.lcd import LCD, CursorMode  # type: ignore
 from CircuitPython_LCDFolder.lcd.i2c_pcf8574_interface import I2CPCF8574Interface  # type: ignore
-# http://www.penguintutor.com/electronics/pico-lcd
+# http://www.penguintutor.com/electronics/pico-lcd 
 # Make sure to have at least 5v. Pico only gives 3 volts. use battery back.
-# address = 0x3f
 
 i2c_address = 0x3f
 cols = 16
@@ -53,10 +51,9 @@ def playerWonFunction(whoScored):
     whoScored["winCount"] = whoScored["winCount"] + 1
     lcd.clear()
     lcd.print(str(whoScored["name"]) + " won the game!")
-
     time.sleep(time_before_autoreset)
     resetScoreFunction()
-#hjrfg
+
 def playerScoredFunction(whoScored):
     if player1["playerWonThisRound"] == False and player2["playerWonThisRound"] == False: ## if nobody won yet
         if whoScored["score"] + 1 != scoreNeededToWinGame:
@@ -85,7 +82,6 @@ lcd.print("Player1: " + str(player1["score"]) + "      " + "Player2: " + str(pla
 print("Done starting up!")
 
 while True:
-    
 # Reset Button
     if resetButton.value == True and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
        resetButtonWasPressed = True
@@ -93,9 +89,7 @@ while True:
     if resetButton.value == False and resetButtonWasPressed == True:
        resetButtonWasPressed = False
 
-
 # Scoring w/ Distance Sensors:
-    # time.sleep(0.05)
     if distanceSensor_player1.distance < 8 and distanceSensor_player1.distance > 4 and player1["playerWonThisRound"] == False and player1_can_score == True:
         player1_can_score = False
         playerScoredFunction(player1)
@@ -107,4 +101,3 @@ while True:
         playerScoredFunction(player2)
     if distanceSensor_player2.distance > 10 and player2_can_score == False:
         player2_can_score = True
-
