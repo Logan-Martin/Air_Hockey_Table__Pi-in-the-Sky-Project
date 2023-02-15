@@ -18,7 +18,8 @@ lcd = LCD(interface, num_rows=rows, num_cols=cols)
 
 resetButton = digitalio.DigitalInOut(board.GP10) # Button stuff
 resetButton.direction = digitalio.Direction.INPUT
-resetButton.pull = digitalio.Pull.DOWN # power is connected to 3volts and ground pin is connected to the pin. 
+resetButton.pull = digitalio.Pull.DOWN 
+# power is connected to 3volts and ground pin is connected to the pin. 
 resetButtonWasPressed = False
 
 scoreNeededToWinGame = 7
@@ -41,8 +42,8 @@ player2 = {
 
 # Distance Sensor Stuff:
 distanceSensor_player1 = VL53L0X(i2c_bus_0)
-
-i2c_bus_1 = busio.I2C(board.GP15,board.GP14) # declare the singleton variable for the default I2C bus
+# declare the singleton variable for the default I2C bus:
+i2c_bus_1 = busio.I2C(board.GP15,board.GP14)
 distanceSensor_player2 = VL53L0X(i2c_bus_1)
 
 time_before_autoreset = 5
@@ -83,7 +84,8 @@ print("Done starting up!")
 
 while True:
 # Reset Button
-    if resetButton.value == True and resetButtonWasPressed == False: # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?)
+    # When player press button, and combined score does not equal 0, then reset score. (Maybe make something for protecting the score?):
+    if resetButton.value == True and resetButtonWasPressed == False:
        resetButtonWasPressed = True
        resetScoreFunction()
     if resetButton.value == False and resetButtonWasPressed == True:
