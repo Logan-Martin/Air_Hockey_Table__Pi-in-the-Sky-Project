@@ -92,14 +92,14 @@ while True:
        resetButtonWasPressed = False
 
 # Scoring w/ Distance Sensors:
-    if distanceSensor_player1.distance < 8 and distanceSensor_player1.distance > 4 and player1["playerWonThisRound"] == False and player1_can_score == True:
+    if distanceSensor_player1.distance < 12 and distanceSensor_player1.distance > 8 and player1["playerWonThisRound"] == False and player1_can_score == True:
         player1_can_score = False
         playerScoredFunction(player1)
-    if distanceSensor_player1.distance > 10 and player1_can_score == False:
+    if distanceSensor_player1.distance > 14 and player1_can_score == False:
         player1_can_score = True
 
-    if distanceSensor_player2.distance < 8 and distanceSensor_player2.distance > 4 and player2["playerWonThisRound"] == False and player2_can_score == True:
+    if distanceSensor_player2.distance < 12 and distanceSensor_player2.distance > 8 and player2["playerWonThisRound"] == False and player2_can_score == True:
         player2_can_score = False
         playerScoredFunction(player2)
-    if distanceSensor_player2.distance > 10 and player2_can_score == False:
+    if distanceSensor_player2.distance > 14 and player2_can_score == False:
         player2_can_score = True
