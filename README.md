@@ -50,7 +50,7 @@ Fixing all of the problems that cropped up with the test pieces and patching it.
 - Notes: This is when code was mostly done/working. Shutting down pins testing, didn't work, then I re-coded it, and it worked so yay! Print statements for checking to see what worked and what didn't. One of the errors was using `` sensor.range `` instead of ``` sensor.distance ```. Make sure to use distance if, ya know, you are looking for the distance. It was then just a matter of copy and pasting different files of code that I had made. Finally, I messed with some certain values that allow the player to score or not. I also noticed I had two debounce systems for stopping the player from scoring, so I got rid of one and changed more variable names.
 
 ### So What happened in February?
-####CAD
+#### CAD
 We have the upper box now. Waiting to get some of the pillars printed for supports. Got the circuitboards soldered and attached some solid core to them.
 #### Images:
 
