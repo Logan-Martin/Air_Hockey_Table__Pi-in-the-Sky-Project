@@ -52,6 +52,9 @@ Fixing all of the problems that cropped up with the test pieces and patching it.
 ### So What happened in February?
 #### CAD
 We have the upper box now. Waiting to get some of the pillars printed for supports. Got the circuitboards soldered and attached some solid core to them.
+
+<img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/AHT%20v2.png" width="582" height="450" />
+
 #### Images:
 
 <img src="https://user-images.githubusercontent.com/71342159/217565048-3209a2c7-22f0-437b-aaf2-e5d517898692.jpg" width="450" height="300" />
@@ -61,13 +64,13 @@ We have the upper box now. Waiting to get some of the pillars printed for suppor
 Progress Images:
 
 2/22/2023:
-![IMG_20230222_103700389_HDR](https://user-images.githubusercontent.com/71342159/222756384-9a8b0a04-97da-4e19-ba1e-58af4e5d5f8f.jpg)
+<img src="https://user-images.githubusercontent.com/71342159/222756384-9a8b0a04-97da-4e19-ba1e-58af4e5d5f8f.jpg" width="591" height="443" />
 
 2/24/2023:
-![IMG_20230224_103616226](https://user-images.githubusercontent.com/71342159/222756364-ebaa8fa5-493c-4486-9af9-a83a9e80f4aa.jpg)
+<img src="https://user-images.githubusercontent.com/71342159/222756364-ebaa8fa5-493c-4486-9af9-a83a9e80f4aa.jpg" width="443" height="591" />
 
 3/1/2023:
-![IMG_20230301_141549482_HDR](https://user-images.githubusercontent.com/71342159/222756422-b19d24ac-579c-4b44-aada-b9e5d6156cd3.jpg)
+<img src="https://user-images.githubusercontent.com/71342159/222756422-b19d24ac-579c-4b44-aada-b9e5d6156cd3.jpg" width="443" height="591"/>
 
 ---
 
