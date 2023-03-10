@@ -8,6 +8,8 @@ Our Pi in the Sky Project repo
 #### CAD:
 This week I adjusted the pillars on the sides up 3mm in order to account for the socket heads of the screws. I also added some basic walls.
 
+<img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/Pillars.png" width="582" height="450"/>
+
 #### Code:
 - [Link to Code (1/4/2023)](https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/e0d8a948c9e20a26cdbd912a6f2891ffc34bfc92/Code/AirHockeyTableCode.py)
 - Notes: Player scoring seemed to break at the begining of the week, but was later fixed. So, messing w/ player scoring and the reset button.
