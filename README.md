@@ -78,6 +78,6 @@ Progress Images:
 
 3/15/2023 Update:
 
-![IMG_20230315_101242399_HDR](https://user-images.githubusercontent.com/71342159/225336586-5cda7151-6b26-4450-a85b-127aecd334d1.jpg)
+<img src="https://user-images.githubusercontent.com/71342159/225336586-5cda7151-6b26-4450-a85b-127aecd334d1.jpg" width="1500" height="2000"/>
 
 The corner standoffs for the fans break easily, 3 total top plates were lost in the making of the image above. We can't make the corners 3D printed, for reasons I forget that Aidan said at least twice already, but we're ok. Wiring might be a pain. And, 3D printing/laser cutting things takes a lot of time.
