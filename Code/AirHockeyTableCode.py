@@ -46,6 +46,9 @@ distanceSensor_player1 = VL53L0X(i2c_bus_0)
 i2c_bus_1 = busio.I2C(board.GP15,board.GP14)
 distanceSensor_player2 = VL53L0X(i2c_bus_1)
 
+distanceReq_min = 12 ## going below 12 apparently breaks the sensor?
+distanceReq_max = 45 ## 50mm
+
 time_before_autoreset = 5
 def playerWonFunction(whoScored):
     print(str(whoScored["name"]) + " won the game!")
@@ -92,14 +95,14 @@ while True:
        resetButtonWasPressed = False
 
 # Scoring w/ Distance Sensors:
-    if distanceSensor_player1.distance < 12 and distanceSensor_player1.distance > 8 and player1["playerWonThisRound"] == False and player1_can_score == True:
+    if distanceSensor_player1.distance < distanceReq_min and distanceSensor_player1.distance > 8 and player1["playerWonThisRound"] == False and player1_can_score == True:
         player1_can_score = False
         playerScoredFunction(player1)
-    if distanceSensor_player1.distance > 14 and player1_can_score == False:
+    if distanceSensor_player1.distance > distanceReq_max and player1_can_score == False:
         player1_can_score = True
 
-    if distanceSensor_player2.distance < 12 and distanceSensor_player2.distance > 8 and player2["playerWonThisRound"] == False and player2_can_score == True:
+    if distanceSensor_player2.distance < distanceReq_min and distanceSensor_player2.distance > 8 and player2["playerWonThisRound"] == False and player2_can_score == True:
         player2_can_score = False
         playerScoredFunction(player2)
-    if distanceSensor_player2.distance > 14 and player2_can_score == False:
+    if distanceSensor_player2.distance > distanceReq_max and player2_can_score == False:
         player2_can_score = True
