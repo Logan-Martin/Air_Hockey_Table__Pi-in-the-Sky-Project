@@ -81,3 +81,6 @@ Progress Images:
 <img src="https://user-images.githubusercontent.com/71342159/225336586-5cda7151-6b26-4450-a85b-127aecd334d1.jpg" width="300" height="400"/>
 
 The corner standoffs for the fans break easily, 3 total top plates were lost in the making of the image above. We can't make the corners 3D printed, for reasons I forget that Aidan said at least twice already, but we're ok. Wiring might be a pain. And, 3D printing/laser cutting things takes a lot of time.
+
+5/3/2023
+Lots of things have happened. The pillars are 3D printed now, and the walls have two t-slots each. THe process for doing this was to piece apart the part studio in order to fix every single error that pooped up from use(and hopefully prevent the reoccurance). The slight shift in the center of the walls from a shift to each wall having two ins and two out caused some centerlines to be off, and also shifted the main table. This required a bit of filing to fix, but there is a change in the part studio to avoid that. RIght now it is just struggling through the soldering to the circuitboard and making sure all the code works before it all fits together.
