@@ -3,6 +3,14 @@ Our Pi in the Sky Project repo
 
 &nbsp;
 
+## Final Product
+### Wiring
+Fans
+
+<img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/Fan%20wiring%20diagram.png" />
+
+
+## Working
 
 ### Week of 1/2/2023
 #### CAD:
