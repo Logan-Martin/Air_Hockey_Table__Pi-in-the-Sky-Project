@@ -9,6 +9,9 @@ Fans
 
 <img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/Fan%20wiring%20diagram.png" />
 
+Arduino
+
+<img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/arduino%20wiring.png" />
 
 ## Working
 
@@ -93,3 +96,8 @@ The corner standoffs for the fans break easily, 3 total top plates were lost in 
 5/3/2023
 Lots of things have happened. The pillars are 3D printed now, and the walls have two t-slots each. THe process for doing this was to piece apart the part studio in order to fix every single error that pooped up from use(and hopefully prevent the reoccurance). The slight shift in the center of the walls from a shift to each wall having two ins and two out caused some centerlines to be off, and also shifted the main table. This required a bit of filing to fix, but there is a change in the part studio to avoid that. Right now it is just struggling through the soldering to the circuitboard and making sure all the code works before it all fits together. The cages at the ends have been revised in order to function better. It now ejects right outside of the table. A second puck has also been made, to try and take the wind better. Hopefully we are done within two weeks
 We also found out about a minute after the previous writing, that most of our irritation came from a bad LCD, so that has now been replaced and it should work fine. We still need to solder the connections to the distance sensors.
+
+5/19/2023
+Our project is almost done. We have a fullrender, and all of are parts are cut and printed. Currently it is just bugfixing in the code and wiring. Hopefully we are done today, but there is a high chance we finish in the next week. We have had lots of issues with the circuit board and are trying to prevent shorts or grounding.
+
+<img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/Final%20render.png" width="582" height="450" />
