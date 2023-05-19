@@ -9,6 +9,9 @@ Fans
 
 <img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/Fan%20wiring%20diagram.png" />
 
+Arduino
+
+<img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/arduino%20wiring.png" />
 
 ## Working
 
