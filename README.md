@@ -99,3 +99,5 @@ We also found out about a minute after the previous writing, that most of our ir
 
 5/19/2023
 Our project is almost done. We have a fullrender, and all of are parts are cut and printed. Currently it is just bugfixing in the code and wiring. Hopefully we are done today, but there is a high chance we finish in the next week. We have had lots of issues with the circuit board and are trying to prevent shorts or grounding.
+
+<img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/Final%20render.png" width="582" height="450" />
