@@ -4,6 +4,33 @@ Our Pi in the Sky Project repo
 &nbsp;
 
 ## Final Product
+
+### Materials
+#### Purchased
+|Type |Quantity |
+|--- | --- |
+|4-40 nuts |42|
+|1-72 nuts| 46|
+|4-40 3/8 screws| 8|
+|4-40 1/2 screws|10|
+|4-40 5/8 screws| 24|
+|1-72 3/8 screws| 14|
+|lcd with backpack| 1|
+|vl53l0x distance sensor| 2|
+|button| 1|
+|screw| 1|
+|wires| as needed|
+|usb to micro usb wire| 1|
+
+#### Made
+|Part Type| Material|
+|---|---|
+|walls| birch wood(soft)(cut)|
+|cages|PLA(3D printed)|
+|pillars|PLA(3D printed)|
+|puck|PLA(3D printed)|
+|main table| acrylic(cut)|
+
 ### Wiring
 Fans
 
