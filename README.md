@@ -6,6 +6,7 @@ Our Pi in the Sky Project repo
 ## Final Product
 
 ### Materials
+
 #### Purchased
 |Type |Quantity |
 |--- | --- |
@@ -41,16 +42,17 @@ Arduino
 <img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/arduino%20wiring.png" />
 
 
-5/24/2023 Update:
+## 5/24/2023 Update:
 
 Completion!
 We have finished it and it (mostly) works. The scoring can be a bit shifty, but overall it functions well.
 
 <img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/final%20table%20gif.gif">
 
+---
 
 <details>
-<summary><b>Update History on the Project</b></summary>
+<summary><b> Update History on the Project</b></summary>
   
   <details>
   <summary><b>Week of 1/2/2023</b></summary>
