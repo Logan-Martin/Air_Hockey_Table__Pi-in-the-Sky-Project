@@ -71,6 +71,7 @@ Image of wiring here
 2. put playing field into the holes of the walls
 **WARNING: This is annoying to do and will probably take you a while.**
 <img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/underside.jpg">
+
 ### Step 6.) Code
 Run the code to the Pico, hopefully everything works perfectly fine.
 
