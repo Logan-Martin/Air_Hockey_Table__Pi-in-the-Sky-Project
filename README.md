@@ -19,9 +19,10 @@ Our Pi in the Sky Project repo
 |lcd with backpack| 1|
 |vl53l0x distance sensor| 2|
 |button| 1|
-|screw| 1|
+|switch| 1|
 |wires| as needed|
 |usb to micro usb wire| 1|
+|24v power supply|1|
 
 #### Made
 |Part Type| Material|
@@ -53,6 +54,7 @@ Arduino
 #### Logan
 
 #### Aidan
+This project was fun. The pillar design was quite fun to do the first time, and although it ended in a slightly too precise way, I enjoyed the idea of the pillars in design, but it failed to be as productive as I hoped. The walls were an adventure. Originally, they only had one t-slot a piece, and each wall either had only ins or only outs. Although each edge of a wall having one of each would be nice, due to a lack of knowledge, I had to settle for one type per edge of the walls. The main table piece sucked. It slowed down the rest of the part studio, and was relevant enough that it could not be hidden well to reduce load (It also took 2 hours to cut, so be aware). When I went back to change the design of the walls, I had used the use/convert tool enough that I had to spend 2.5 hours fixing the entire project. Overall, I enjoyed the project through the hardship in CAD, and the assembly was more tedious than anything else. Good year-long project, but I just feel like I spent too long with simple mistakes now.
 
 ## 5/24/2023 Update:
 
