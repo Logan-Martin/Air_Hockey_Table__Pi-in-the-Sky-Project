@@ -43,7 +43,7 @@
 
 ### Step 2.) Assembly 1 and Wiring 1
 - Put the walls together with screws
-- Srew the goal catchers into the 2 walls that need them
+- Screw the goal catchers into the 2 walls that need them
 - Screw in push button and wire that end
 - Screw in LCD and wire that end
 - Screw in Distance Sensors and wire that end
@@ -61,7 +61,7 @@
 ### Step 5.) Wiring 2
 Wire everything to the Pico
 
-image of wiring here
+Image of wiring here
 
 ### Step 6.) Assembly 2
 
