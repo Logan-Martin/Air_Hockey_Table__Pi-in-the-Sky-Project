@@ -36,7 +36,7 @@
 - The playing field (WARNING: This took 2 hours for us to laser cut.)
 
 ##### Code:
-General Tree: https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/tree/main/Code
-Code for the Mini Air Hockey Table: https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Code/AirHockeyTableCode.py
+- General Tree: https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/tree/main/Code
+- Code for the Mini Air Hockey Table: https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Code/AirHockeyTableCode.py
 
 #### Step 2.) 
