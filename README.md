@@ -41,6 +41,18 @@ Arduino
 
 <img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/arduino%20wiring.png" />
 
+### CAD Render
+
+<img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/Final%20render.png" />
+
+### Final Product
+
+<img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/final%20table%20gif.gif">
+
+### Reflections
+#### Logan
+
+#### Aidan
 
 ## 5/24/2023 Update:
 
