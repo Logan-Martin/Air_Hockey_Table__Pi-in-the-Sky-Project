@@ -47,30 +47,31 @@
 - Screw in push button and wire that end
 - Screw in LCD and wire that end
 - Screw in Distance Sensors and wire that end
+<img src="https://user-images.githubusercontent.com/71342159/222756364-ebaa8fa5-493c-4486-9af9-a83a9e80f4aa.jpg" width="443" height="591" >
 
-### Step 4.) Fans
+### Step 3.) Fans
 
 1. Screw in standoffs/pillars onto the underside of the fans:
 
 2. Connect all ground wires from the fans to a hub
 3. Connect all power wires from the fans to a hub
 4. Connect the hubs to their respective entry point where you insert the 24volt power supply:
-
+<img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/Fans.jpg" width="443" height="591">
 **WARNING: Make sure the power supply is not giving any power, make sure it's not plugged in. You could hurt yourself if the fans are on while assembling. We learned this the hard way.**
 
-### Step 5.) Wiring 2
+### Step 4.) Wiring 2
 Wire everything to the Pico
 
 Image of wiring here
 
-### Step 6.) Assembly 2
+### Step 5.) Assembly 2
 
 1. Put the assembled walls into the pillar holes that are are attached to the fans.
 
 2. put playing field into the holes of the walls
 **WARNING: This is annoying to do and will probably take you a while.**
-
-### Step 7.) Code
+<img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/underside.jpg">
+### Step 6.) Code
 Run the code to the Pico, hopefully everything works perfectly fine.
 
 ---
