@@ -50,6 +50,10 @@ Arduino
 
 <img src="https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/blob/main/Images/final%20table%20gif.gif">
 
+### Code
+
+https://github.com/Logan-Martin/Air-Hockey-Table---Pi-in-the-Sky-Project/tree/main/Code
+
 ### Reflections
 #### Logan
 
